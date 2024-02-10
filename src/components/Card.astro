@@ -2,18 +2,11 @@
 interface Props {
 	title: string;
 	time: string;
-	tags: string;
+	tags: string[];
 }
 
 const { time, title, tags } = Astro.props;
 ---
-
-<!--
-  Heads up! 👋
-
-  Custom CSS:
-    - animate-background https://github.com/markmead/hyperui/blob/main/tailwind.preset.js
--->
 
 <article
   class="hover:animate-background rounded-xl bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
@@ -28,13 +21,13 @@ const { time, title, tags } = Astro.props;
     </a>
 
     <div class="mt-4 flex flex-wrap gap-1">
-      <span
-        class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
-      >
-        {tags}
-
-      </span>
-
+      {
+				tags.map((item) => (
+					<span class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+						{item}
+					</span>
+				))
+			}
     </div>
   </div>
 </article>
